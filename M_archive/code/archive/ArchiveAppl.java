@@ -1,5 +1,6 @@
 package archive;
 
+import archive.dao.Archive;
 import archive.dao.ArchiveImpl;
 import archive.model.Document;
 import archive.model.Menu;
@@ -11,8 +12,7 @@ public class ArchiveAppl {
     public static void main(String[] args) {
         // greeting
         System.out.println("Welcome to Archive.");
-        ArchiveImpl archive = new ArchiveImpl(100);
-        LocalDateTime time = LocalDateTime.now();
+        Archive archive = new ArchiveImpl(100);
 
         // начало цикла
         while (true) {
@@ -48,7 +48,6 @@ public class ArchiveAppl {
                     case 3: { //find documents
                         System.out.println("Enter ID Document: ");
                         int number = scanner.nextInt();
-                        archive.findDocument(number);
                         System.out.println(archive.findDocument(number));
                         break;
                     }
@@ -69,7 +68,8 @@ public class ArchiveAppl {
                     }
                 }
             } catch (Exception e){
-                System.out.println("Wrong input.");
+                System.err.println("Something went wrong :-/");
+                e.printStackTrace();
             }
         }
     }
